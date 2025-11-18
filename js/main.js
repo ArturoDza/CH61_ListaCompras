@@ -9,6 +9,8 @@ const precioTotal = document.getElementById("precioTotal");
 const tablaListaCompras = document.getElementById("tablaListaCompras");
 const cuerpoTabla = tablaListaCompras.getElementsByTagName("tbody").item(0);
 
+const btnClear =document.getElementById("btnClear");
+
 let cont = 0;
 let totalEnProductos = 0;
 let costoTotal = 0;
@@ -105,6 +107,18 @@ btnAgregar.addEventListener("click", function (event) {
 
 
 });//botonAgregar click
+
+btnClear.addEventListener("click", function() {
+    // 1. Borrar localStorage
+    localStorage.clear();
+    if (tablaListaCompras){
+        tablaListaCompras.innerHTML= "";
+    }//limpia tabla de contenido
+   
+    
+
+
+});//boton Limpiar todo
 
 window.addEventListener("load", function (event) {
     event.preventDefault();
