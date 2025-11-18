@@ -75,12 +75,39 @@ btnAgregar.addEventListener("click", function (event) {
         precioTotal.innerText = new Intl.NumberFormat("es-MX",
             { style: "currency", currency: "MXN" }).format(costoTotal);
 
-        txtName.value="";
-        txtNumber.value="";
+        let resumen = {
+            "cont": cont,
+            "totalEnProductos": totalEnProductos,
+            "costoTotal": costoTotal
+        };
+
+        localStorage.setItem("resumen", JSON.stringify(resumen));
+
+
+        txtName.value = "";
+        txtNumber.value = "";
         txtName.focus();
 
     }//isValid
 
 
 
-});
+});//botonAgregar click
+
+window.addEventListener("load", function (event) {
+    event.preventDefault();
+    if (this.localStorage.getItem("resumen") != null) {
+        let resumen = JSON.parse(this.localStorage.getItem("resumen"));
+        cont = resumen.cont;
+        totalEnProductos = resumen.totalEnProductos;
+        costoTotal = resumen.costoTotal;
+    }//!=null
+    contadorProductos.innerText = cont;
+    productosTotal.innerText = totalEnProductos;
+    precioTotal.innerText = new Intl.NumberFormat("es-MX",
+        { style: "currency", currency: "MXN" }).format(costoTotal); 
+
+
+
+
+})//window load
